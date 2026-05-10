@@ -1,4 +1,4 @@
-from dcim.models import Device, Interface
+from dcim.models import Device, Interface, MACAddress
 from ipam.models import VLAN
 
 from netbox_initializers.initializers.base import BaseInitializer, register_initializer
@@ -7,6 +7,7 @@ MATCH_PARAMS = ["device", "name"]
 REQUIRED_ASSOCS = {"device": (Device, "name")}
 OPTIONAL_ASSOCS = {
     "untagged_vlan": (VLAN, "name"),
+    "primary_mac_address": (MACAddress, "mac_address"),
 }
 RELATED_ASSOCS = {
     "bridge": (Interface, "name"),
