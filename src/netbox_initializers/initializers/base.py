@@ -81,12 +81,12 @@ class BaseInitializer:
 
         save = False
         for tag in Tag.objects.filter(name__in=tags):
-            restricted_cts = tag.object_types.all()
-            if restricted_cts and ct not in restricted_cts:
-                raise Exception(
-                    f"⚠️ Tag {tag} cannot be applied to {entity}'s content type {ct}. Applicable content types for tag: {list(restricted_cts)}"
-                )
-
+            # restricted_cts = tag.object_types.all()
+            # if restricted_cts and ct not in restricted_cts:
+            #     raise Exception(
+            #         f"⚠️ Tag {tag} cannot be applied to {entity}'s content type {ct}. Applicable content types for tag: {list(restricted_cts)}"
+            #     )
+            #
             entity.tags.add(tag)
             save = True
 
