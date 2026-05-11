@@ -84,7 +84,7 @@ class BaseInitializer:
             restricted_cts = tag.object_types.all()
             if restricted_cts and ct not in restricted_cts:
                 raise Exception(
-                    f"⚠️ Tag {tag} cannot be applied to {entity}'s content type {ct.natural_key()}"
+                    f"⚠️ Tag {tag} cannot be applied to {entity}'s content type {ct.natural_key()}, applicablt content types for tag: {restricted_cts}"
                 )
 
             entity.tags.add(tag)
