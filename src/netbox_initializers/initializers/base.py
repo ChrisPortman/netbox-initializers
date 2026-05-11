@@ -83,7 +83,9 @@ class BaseInitializer:
         for tag in Tag.objects.filter(name__in=tags):
             restricted_cts = tag.object_types.all()
             if restricted_cts and ct not in restricted_cts:
-                raise Exception(f"⚠️ Tag {tag} cannot be applied to {entity}'s model")
+                raise Exception(
+                    f"⚠️ Tag {tag} cannot be applied to {entity}'s content type {ct.app_labeled_name}"
+                )
 
             entity.tags.add(tag)
             save = True
@@ -106,7 +108,9 @@ class BaseInitializer:
         if save:
             entity.save()
 
-    def split_params(self, params: dict, unique_params: list = None) -> Tuple[dict, dict]:
+    def split_params(
+        self, params: dict, unique_params: list = None
+    ) -> Tuple[dict, dict]:
         """Split params dict into dict with matching params and a dict with default values"""
 
         if unique_params is None:
